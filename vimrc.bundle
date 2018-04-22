@@ -6,6 +6,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle"
 
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_ShortcutF = '<C-P>'
+let g:Lf_ShortcutB = '<Leader>bo'
+let g:Lf_DefaultExternalTool = "ag"
+" let g:Lf_UseVersionControlTool = "git ls-files"
+let g:Lf_CommandMap = {'<C-C>': ['<Esc>', '<C-C>']}
+let g:Lf_WindowHeight = 0.3
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \}
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+
 " Search
 Plug 'mileszs/ack.vim' 
 let g:ack_use_cword_for_empty_search = 1
@@ -14,6 +28,101 @@ if executable('ag')
 endif
 vnoremap <silent> <leader>f :call visual#action('Ack! foo')<cr>
 nnoremap <leader>f :Ack!<space>
+
+"""""""""""""""""""statusline""""""""""""""""""""
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+            \ 'colorscheme': 'seoul256',
+            \ 'mode_map': { 'c': 'NORMAL'  },
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste'  ], [ 'fugitive', 'filename'  ]  ],
+            \   'right': [ [ 'ale' ], [ 'lineinfo'  ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype'  ]  ]
+            \ },
+            \ 'inactive': {
+            \   'left': [ [ 'filename' ]  ],
+            \   'right': []
+            \ },
+            \ 'component_function': {
+            \   'modified': 'LightlineModified',
+            \   'readonly': 'LightlineReadonly',
+            \   'fugitive': 'LightlineFugitive',
+            \   'filename': 'LightlineFilename',
+            \   'fileformat': 'LightlineFileformat',
+            \   'filetype': 'LightlineFiletype',
+            \   'fileencoding': 'LightlineFileencoding',
+            \   'mode': 'LightlineMode',
+            \   'ale': 'LightlineAle',
+            \ },
+            \ 'separator': { 'left': '', 'right': '' },
+            \ 'subseparator': { 'left': '', 'right': '' }
+            \ }
+
+function! LightlineAle()
+    if exists('g:loaded_ale')
+        return ALEGetStatusLine()
+    endif
+    return ''
+endfunction
+
+function! LightlineModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '' : ''
+endfunction
+
+function! LightlineMode()
+    let fname = expand('%:t')
+    return fname == '__Tagbar__' ? 'Tagbar' :
+                \ fname == 'ControlP' ? 'CtrlP' :
+                \ fname =~ 'NERD_tree' ? 'NERDTree' :
+                \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! LightlineFilename()
+    let fname = expand('%:t')
+    if fname == 'ControlP'
+        return ''
+    endif
+    if fname =~ 'NERD_tree'
+        return 'NERDTree'
+    endif
+    if fname =~ 'FZF'
+        return 'FZF'
+    endif
+    if fname =~ '__Tagbar__'
+        return 'Tagbar'
+    endif
+
+    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+                \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+                \  &ft == 'unite' ? unite#get_status_string() :
+                \  &ft == 'vimshell' ? vimshell#get_status_string() :
+                \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+    if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+        let branch = fugitive#head()
+        return branch !=# '' ? ' '.branch : ''
+    endif
+    return ''
+endfunction
+
+function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+"""""""""""""""""""""""""""""""""""""""
 
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Ignore files in NERDTree
@@ -34,6 +143,10 @@ let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 map <silent> <F2> :TagbarToggle<cr>
 imap <silent> <F2> <Esc>:TagbarToggle<cr>
+
+Plug 'terryma/vim-multiple-cursors'
+let g:multi_cursor_quit_key='<C-c>'
+let g:multi_cursor_skip_key='<C-x>'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
@@ -56,7 +169,6 @@ Plug 'tpope/vim-fugitive'
 map <leader>ga :Gwrite<cr>
 map <silent> <leader>gb :Gblame<cr>
 """"""""""""""""""""""""""""""""""""""""""
-
 """""""""""""Lazyload func""""""""""""""""
 augroup plug_lazy_load
     autocmd!
