@@ -184,6 +184,11 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
+nmap <C-h> <Esc><C-w>h
+nmap <C-j> <Esc><C-w>j
+nmap <C-k> <Esc><C-w>k
+nmap <C-l> <Esc><C-w>l
+
 " Delete trailing white space on save, useful for Python and JavaScript.
 func! DeleteTrailingWS()
     exe "normal mz"
