@@ -54,14 +54,6 @@ let g:netrw_altv = 1 " open splits to the right
 let g:netrw_list_hide = netrw_gitignore#Hide()
 let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-map <silent> <F2> :TagbarToggle<cr>
-imap <silent> <F2> <Esc>:TagbarToggle<cr>
-
-Plug 'terryma/vim-multiple-cursors'
-let g:multi_cursor_quit_key='<C-c>'
-let g:multi_cursor_skip_key='<C-x>'
-
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
