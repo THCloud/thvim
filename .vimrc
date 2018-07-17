@@ -49,6 +49,8 @@ set ruler
 " Height of the command bar
 set cmdheight=1
 
+colorscheme desert
+
 " A buffer becomes hidden when it is abandoned
 set hid
 
@@ -237,7 +239,7 @@ syntax enable
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
-
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 

@@ -2,10 +2,13 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
 
-" Make pairs colorful
+""""""""""""""""colorful pairs""""""""
 Plug 'luochen1990/rainbow'
+Plug 'jiangmiao/auto-pairs'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle"
+"""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""search file""""""""""""
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 let g:Lf_StlColorscheme = 'powerline'
 let g:Lf_ShortcutF = '<C-P>'
@@ -19,10 +22,9 @@ let g:Lf_WildIgnore = {
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+"""""""""""""""""""""""""""""""""""""""
 
-Plug 'tomasiser/vim-code-dark'
-
-" Search
+""""""""""""""""search""""""""""""""""
 Plug 'mileszs/ack.vim' 
 let g:ack_use_cword_for_empty_search = 1
 if executable('ag')
@@ -30,14 +32,16 @@ if executable('ag')
 endif
 vnoremap <silent> <leader>f :call visual#action('Ack! foo')<cr>
 nnoremap <leader>f :Ack!<space>
+"""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""airline""""""""""""""""
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'codedark'
 let g:airline_powerline_fonts = 1
 """""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""nerdtree"""""""""""""""
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$'] 
@@ -53,28 +57,21 @@ let g:netrw_liststyle = 3 " tree view
 let g:netrw_altv = 1 " open splits to the right
 let g:netrw_list_hide = netrw_gitignore#Hide()
 let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
+"""""""""""""""""""""""""""""""""""""""
 
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-
-" Add commenter
+"""""""""""""fast comment""""""""""""""
 Plug 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims=1
-map <leader>/ <leader>c<space>
+map <leader>/ <leader>cs
+"""""""""""""""""""""""""""""""""""""""
 
-" Code snip support
+"""""""""""""""""""snippets"""""""""""""""
 Plug 'SirVer/ultisnips', {'on': []}
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-p>"
-
 """"""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""git""""""""""""""""""""
-Plug 'tpope/vim-fugitive' 
-map <leader>ga :Gwrite<cr>
-map <silent> <leader>gb :Gblame<cr>
-""""""""""""""""""""""""""""""""""""""""""
 """""""""""""Lazyload func""""""""""""""""
 augroup plug_lazy_load
     autocmd!
@@ -84,28 +81,20 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""Python""""""""""""""""""""
-let g:python_highlight_all = 1
 Plug 'vim-python/python-syntax'
+let g:python_highlight_all = 1
 """""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""GO""""""""""""""""""""
+Plug 'fatih/vim-go'
 """""""""""""""""""""FE""""""""""""""""""""
+Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
-
 let g:used_javascript_libs = 'requirejs,vue,react,jquery'
 Plug 'othree/xml.vim', {'for': ['html', 'xml']}
-
-"react support
 Plug 'chemzqm/vim-jsx-improve'
 """""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""markdown"""""""""""""""""
-Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'}
-if has('mac')
-    let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
-endif
-
-""""""""""""""""""""""""""""""""""""""""""
 
 " Initialize plugin system
 call plug#end()
