@@ -62,7 +62,7 @@ let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 """""""""""""fast comment""""""""""""""
 Plug 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims=1
-map <leader>/ <leader>cs
+map <leader>/ <leader>c<space>
 """""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""snippets"""""""""""""""
