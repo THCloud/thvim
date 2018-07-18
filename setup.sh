@@ -28,3 +28,5 @@ vim -E -s <<-EOF
 EOF
 vim +PlugInstall +qall
 
+cp ./snippets/* ~/.vim/plugged/vim-snippets/snippets
+
