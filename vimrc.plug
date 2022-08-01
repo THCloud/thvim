@@ -23,15 +23,3 @@ Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 
 " Initialize plugin system
 call plug#end()
-
-
-autocmd FileType go nnoremap <buffer> <F12> :call GodefUnderCursor()<cr>
-" let g:Lf_StlColorscheme = 'powerline'
-
-
-" Config netrw
-" let g:netrw_banner = 0
-" let g:netrw_liststyle = 3 " tree view
-" let g:netrw_altv = 1 " open splits to the right
-" let g:netrw_list_hide = netrw_gitignore#Hide()
-" let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
