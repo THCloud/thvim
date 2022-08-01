@@ -10,6 +10,7 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 
 Plug 'Yggdroot/LeaderF'
 let g:Lf_ShortcutF = '<C-P>'
+let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
 
 Plug 'APZelos/blamer.nvim'
 let g:blamer_enabled = 1
