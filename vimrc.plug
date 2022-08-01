@@ -1,0 +1,37 @@
+"
+" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
+call plug#begin('~/.vim/plugged')
+
+Plug 'luochen1990/rainbow'
+Plug 'jiangmiao/auto-pairs'
+let g:rainbow_active = 1 
+
+Plug 'fatih/vim-go', { 'tag': '*' }
+
+Plug 'Yggdroot/LeaderF'
+let g:Lf_ShortcutF = '<C-P>'
+
+Plug 'APZelos/blamer.nvim'
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
+
+Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+map <silent> <F1> :NERDTreeToggle<cr>
+imap <silent> <F1> <Esc>:NERDTreeToggle<cr>
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+
+
+" Initialize plugin system
+call plug#end()
+
+
+autocmd FileType go nnoremap <buffer> <F12> :call GodefUnderCursor()<cr>
+" let g:Lf_StlColorscheme = 'powerline'
+
+
+" Config netrw
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3 " tree view
+" let g:netrw_altv = 1 " open splits to the right
+" let g:netrw_list_hide = netrw_gitignore#Hide()
+" let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
