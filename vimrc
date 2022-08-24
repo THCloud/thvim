@@ -11,11 +11,12 @@ syntax on
 set colorcolumn=80,100,120
 set hlsearch
 set incsearch 
-
+set cursorline
 " Set to auto read when a file is changed from the outside
 set autoread
 
-let g:mapleader = "\<space>"
+noremap <F5> :e ~/.vimrc.plug<cr>
+let g:mapleader = "\<Space>"
 noremap <c-d> :terminal<cr>
 " Search down into subfolders
 set path+=**

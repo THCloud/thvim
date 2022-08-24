@@ -10,24 +10,21 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 map <silent> <F12> :GoDef<cr>
 imap <silent> <F12> :GoDef<cr>
 nmap <silent> <F12> :GoDef<cr>
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 
 Plug 'joshdick/onedark.vim'
+let g:onedark_hide_endofbuffer = 1
+let g:onedark_terminal_italics = 1
 Plug 'tribela/vim-transparent'
 
 Plug 'Yggdroot/LeaderF'
 let g:Lf_ShortcutF = '<C-P>'
 let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
 
-Plug 'APZelos/blamer.nvim'
-let g:blamer_enabled = 1
-let g:blamer_delay = 500
-
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 map <silent> <F1> :NERDTreeToggle<cr>
 imap <silent> <F1> <Esc>:NERDTreeToggle<cr>
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
-
 
 " Initialize plugin system
 call plug#end()
