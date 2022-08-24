@@ -2,6 +2,9 @@ if filereadable(expand("~/.vimrc.plug"))
     source ~/.vimrc.plug
 endif
 
+colorscheme onedark
+hi Normal guibg=NONE ctermbg=NONE
+
 set history=500
 set nu!
 syntax on
@@ -13,7 +16,7 @@ set incsearch
 set autoread
 
 let g:mapleader = "\<space>"
-
+noremap <c-d> :terminal<cr>
 " Search down into subfolders
 set path+=**
 

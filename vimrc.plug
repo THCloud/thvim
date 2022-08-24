@@ -7,6 +7,13 @@ Plug 'jiangmiao/auto-pairs'
 let g:rainbow_active = 1 
 
 Plug 'fatih/vim-go', { 'tag': '*' }
+map <silent> <F12> :GoDef<cr>
+imap <silent> <F12> :GoDef<cr>
+nmap <silent> <F12> :GoDef<cr>
+Plug 'Valloric/YouCompleteMe'
+
+Plug 'joshdick/onedark.vim'
+Plug 'tribela/vim-transparent'
 
 Plug 'Yggdroot/LeaderF'
 let g:Lf_ShortcutF = '<C-P>'
@@ -24,3 +31,5 @@ Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 
 " Initialize plugin system
 call plug#end()
+
+
